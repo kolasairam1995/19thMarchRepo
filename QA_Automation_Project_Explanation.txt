@@ -1,0 +1,214 @@
+
+QA AUTOMATION PROJECT EXPLANATION (INTERVIEW FRIENDLY)
+
+Project Type
+Selenium + Java + Cucumber + Maven Automation Framework
+
+Project Goal
+The goal of this project is to automate testing of a banking application where users can:
+- Login to the application
+- Create new customers
+- Create personal bank accounts
+- Logout from the application
+
+Instead of manually testing these features again and again, we created an automation framework that runs tests automatically.
+
+-------------------------------------
+PROJECT ARCHITECTURE
+-------------------------------------
+
+The framework follows a common automation design called:
+
+Page Object Model (POM)
+
+This design separates:
+1. Test logic
+2. Page elements
+3. Test data
+4. Utilities
+
+This makes the framework easy to maintain and scalable.
+
+-------------------------------------
+FOLDER STRUCTURE EXPLANATION
+-------------------------------------
+
+1. FeatureFiles
+These files contain test scenarios written in simple English using Cucumber (Gherkin language).
+
+Example:
+Login.feature
+NewCustomerCreation.feature
+PersonalAccountCreation.feature
+SuccessfulLogout.feature
+
+These files describe the behavior of the system.
+
+Example scenario:
+Given user launches the application
+When user enters username and password
+Then user should login successfully
+
+Non‑technical people can also read these files.
+
+-------------------------------------
+2. StepDefinitions
+
+Step definition files contain the actual automation code that executes steps written in feature files.
+
+Example:
+Given → open browser
+When → enter username and password
+Then → verify login success
+
+So feature file steps are connected with Java methods here.
+
+-------------------------------------
+3. PageRepository (Page Object Model)
+
+Each webpage has its own Java class.
+
+Example:
+LoginPage1.java
+NewCustomerPage1.java
+
+These classes store:
+- Web elements (username field, password field, buttons)
+- Actions performed on the page
+
+Example methods:
+enterUsername()
+enterPassword()
+clickLogin()
+
+This improves maintainability.
+
+-------------------------------------
+4. Utilities
+
+Utility classes perform common reusable tasks.
+
+Examples:
+BaseClass1 → Browser setup, WebDriver initialization
+FetchDataFromExcel → Reading test data from Excel
+SendDataToExcel → Writing results to Excel
+FetchDataFromProperty → Reading configuration data
+
+These utilities help avoid code duplication.
+
+-------------------------------------
+5. Constants
+
+ConstantData1 class stores static values used across the project.
+
+Example:
+URLs
+Default values
+Global configurations
+
+-------------------------------------
+6. TestRunner
+
+This is the main file that runs all cucumber feature files.
+
+It connects:
+Feature files
+Step definitions
+Reporting
+
+When we run this class, the automation execution starts.
+
+-------------------------------------
+EXECUTION FLOW OF THE PROJECT
+-------------------------------------
+
+1. TestRunner starts execution
+2. Cucumber reads feature files
+3. StepDefinitions connect feature steps to Java code
+4. Page Object classes perform actions on the application
+5. Selenium interacts with browser
+6. Results are generated in HTML reports
+
+-------------------------------------
+JAVA OOPS CONCEPTS USED IN THE PROJECT
+-------------------------------------
+
+1. Encapsulation
+
+Encapsulation means hiding data and providing access through methods.
+
+Example in project:
+Page classes hide WebElements and provide public methods like:
+
+login()
+enterUsername()
+clickSubmit()
+
+Other classes cannot directly access elements.
+
+-------------------------------------
+2. Inheritance
+
+Inheritance allows one class to reuse properties of another.
+
+Example:
+BaseClass1 contains:
+
+WebDriver initialization
+Browser setup
+Common utilities
+
+Other classes extend this base class to reuse functionality.
+
+-------------------------------------
+3. Abstraction
+
+Abstraction means hiding complex implementation.
+
+Feature files only show simple steps like:
+
+Login to application
+
+But internally Selenium performs many operations.
+
+User does not see the complexity.
+
+-------------------------------------
+4. Polymorphism
+
+Same method name but different behavior.
+
+Example:
+Different pages may use similar method names like:
+
+clickButton()
+submitForm()
+
+But implementation varies based on page.
+
+-------------------------------------
+TOOLS USED IN THE PROJECT
+-------------------------------------
+
+Java → Programming language
+Selenium → Browser automation
+Cucumber → BDD testing
+Maven → Dependency management
+TestNG/JUnit → Test execution
+Extent Reports → Reporting
+Excel → Test data management
+
+-------------------------------------
+HOW TO EXPLAIN THIS PROJECT IN INTERVIEW
+-------------------------------------
+
+"My project is a Selenium automation framework built using Java, Cucumber, and Maven. 
+We follow the Page Object Model design pattern to maintain scalability and maintainability. 
+Feature files are written in Gherkin language which describes the application behavior in a readable format. 
+Step definitions connect these feature steps to Selenium automation code. 
+Page classes store all web elements and actions related to each page. 
+Utility classes handle reusable functionalities like browser setup, reading data from Excel, and configuration handling. 
+The framework uses OOPS concepts such as encapsulation in page classes, inheritance through base classes, abstraction through feature files, and polymorphism in reusable methods. 
+Finally, test execution is triggered through the TestRunner class and reports are generated using HTML reports."
+
+-------------------------------------
